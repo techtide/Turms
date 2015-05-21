@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Happy Med": {
+            "applicationId": "lugLlygfU8Q3q8JOSWJQVM9xTEXP2NDQ96sH6cxm", 
+            "masterKey": "pQJ7bi2c5dmFyKkr6qNNaA9jfoLGYWe46RCm0tum"
+        }, 
+        "_default": {
+            "link": "Happy Med"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.5"
+    }
+}

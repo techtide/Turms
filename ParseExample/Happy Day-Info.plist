@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Turms</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict/>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
+	<key>CFBundleIdentifier</key>
+	<string>net.yqpc.ios.Turms</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.0</string>
+	<key>CFBundleSignature</key>
+	<string></string>
+	<key>CFBundleVersion</key>
+	<string>3.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string>	&lt;key&gt;CFBundleIconFiles&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;Icon.png&lt;/string&gt;
+		&lt;string&gt;Icon@2x.png&lt;/string&gt;
+		&lt;string&gt;Icon-60.png&lt;/string&gt;
+		&lt;string&gt;Icon-60@2x.png&lt;/string&gt;
+		&lt;string&gt;Icon-Spotlight-40.png&lt;/string&gt;
+		&lt;string&gt;Icon-Spotlight-40@2x.png&lt;/string&gt;
+		&lt;string&gt;Icon-Small.png&lt;/string&gt;
+		&lt;string&gt;Icon-Small@2x.png&lt;/string&gt;
+	&lt;/array&gt;
+</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
