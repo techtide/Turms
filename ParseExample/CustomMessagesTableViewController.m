@@ -23,7 +23,7 @@
 {
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.colorsTable addSubview:refreshControl];
@@ -31,16 +31,16 @@
     
 }
 
-    
-    -(void)refresh:(id)sender{
-        if([(NSObject *)sender isKindOfClass:[UIRefreshControl class]]){
-            UIRefreshControl *spinner = (UIRefreshControl *)sender;
-            //There's probably a better way to do this with NSTimer, but that solution would be a little complicated for the Treehouse Forum, so I'll just use C's sleep function here
-            sleep(2);
-            //On its own, the UIRefreshControl class doesn't know when you're done refreshing, and therefore, won't know when to stop its animation, until you tell it to
-            [spinner endRefreshing];
-        }
+
+-(void)refresh:(id)sender{
+    if([(NSObject *)sender isKindOfClass:[UIRefreshControl class]]){
+        UIRefreshControl *spinner = (UIRefreshControl *)sender;
+        //There's probably a better way to do this with NSTimer, but that solution would be a little complicated for the Treehouse Forum, so I'll just use C's sleep function here
+        sleep(2);
+        //On its own, the UIRefreshControl class doesn't know when you're done refreshing, and therefore, won't know when to stop its animation, until you tell it to
+        [spinner endRefreshing];
     }
+}
 
 
 - (void) retrieveFromParse {
@@ -57,14 +57,14 @@
     PFQuery *retrieveMessages3 = [PFQuery orQueryWithSubqueries:queries];
     [retrieveMessages3
      findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            colorsArray = [[NSArray alloc] initWithArray:objects];
-        }
-     [colorsTable reloadData];
-    }];
-    }
-    
-        
+         if (!error) {
+             colorsArray = [[NSArray alloc] initWithArray:objects];
+         }
+         [colorsTable reloadData];
+     }];
+}
+
+
 
 
 

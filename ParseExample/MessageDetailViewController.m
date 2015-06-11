@@ -39,8 +39,8 @@
     NSNumber *boolNumber = [self.parseMessage objectForKey:@"public"];
     BOOL b = [boolNumber boolValue];
     if(b == YES) {
-         self.replyButton.enabled = NO;
-         self.replyButton.title =  nil;
+        self.replyButton.enabled = NO;
+        self.replyButton.title =  nil;
     }
     
     
@@ -50,8 +50,8 @@
     self.explanationLabel.text = self.parseMessage[@"explanation"];
     NSDate *date = self.parseMessage.createdAt;
     self.createdLabel.text = [NSDateFormatter localizedStringFromDate:date
-    dateStyle:NSDateFormatterShortStyle
-    timeStyle:NSDateFormatterShortStyle];
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterShortStyle];
     PFUser *user = self.parseMessage[@"user"];
     [user refresh];
     self.sentFromLabel.text = user.username;
@@ -71,10 +71,10 @@
 }
 - (IBAction)reply:(id)sender {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reply"
-                                                      message:@"To reply to the user who sent this message, type in what you want to say to them, and then tap on the 'Reply,' button. Otherwise, select the 'Cancel,' button."
-                                                     delegate:self
-                                            cancelButtonTitle:@"Cancel"
-                                            otherButtonTitles:@"Reply", NULL];
+                                                    message:@"To reply to the user who sent this message, type in what you want to say to them, and then tap on the 'Reply,' button. Otherwise, select the 'Cancel,' button."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Reply", NULL];
     [alert show];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -85,8 +85,8 @@
     }
     if (buttonIndex == 1) {
         NSString *content = [alertView textFieldAtIndex:0].text;    //stores content typed in reply in a variable
-                    // Perform action to send to the original sender
-
+        // Perform action to send to the original sender
+        
         PFObject *replyMessage = [PFObject objectWithClassName:@"CustomMessage"];
         replyMessage[@"title"]= @"New reply!";
         replyMessage[@"note"]= @"This is a reply to your earlier message.";
@@ -94,15 +94,15 @@
         replyMessage[@"toUser"]=self.parseMessage[@"user"]; //Sets the message the person sends to be == the person who sent it
         replyMessage[@"category"]=self.parseMessage[@"category"];
         replyMessage[@"user"]=[PFUser currentUser];
-           [replyMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [replyMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 //show alert
                 UIAlertView *sucess = [[UIAlertView alloc]
-                                      initWithTitle: @"Reply Sent"
+                                       initWithTitle: @"Reply Sent"
                                        message: @"Your reply has been sent."
                                        delegate:self
                                        cancelButtonTitle:@"OK"
-                                      otherButtonTitles:NULL];
+                                       otherButtonTitles:NULL];
                 [sucess show];
             } else {
                 // There was a problem, check error.description
@@ -115,21 +115,11 @@
                 [error show];
             }
         }];
-
+        
         
     }
+    
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
+

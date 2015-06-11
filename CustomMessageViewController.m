@@ -60,10 +60,11 @@ NSMutableArray *users;
     [super viewDidLoad];
     
     //Hides some fields
-    _usersTable.hidden = YES;
+    _usersTable.hidden = NO;
     _publicLabel.hidden = YES;
-    _searchBar.hidden = YES;
-
+    _searchBar.hidden = NO;
+    
+    
     //Initializes Public/Private segmented control/switcher
     [self.messageTypeSegmentedControl setSelectedSegmentIndex:0];
     
@@ -80,10 +81,9 @@ NSMutableArray *users;
         
     }
     self.searchResult = [NSMutableArray arrayWithArray:users];
-    NSLog(@"At starting users = %@", self.searchResult);
     [users removeObject:delegate.applicationUser];
     
- 
+    
     
     [self.usersTable setDelegate:self];
     [self.usersTable setDataSource:self];
@@ -99,8 +99,6 @@ NSMutableArray *users;
     _categoryTextfield.delegate = self;
     //[_usersTable registerClass:self forCellReuseIdentifier:@"userCell"];
 }
-
-
 
 //Image choosing utilities
 - (IBAction)chooseImage:(id)sender {
@@ -124,21 +122,21 @@ NSMutableArray *users;
     //Method manages segmented controller
     
     if (self.messageTypeSegmentedControl.selectedSegmentIndex ==0) {
-        public = true;
-        _usersTable.hidden=YES;
-        _publicLabel.hidden=NO;
-
-    }else {
         public = false;
         _usersTable.hidden = NO;
         _publicLabel.hidden=YES;
         _searchBar.hidden = NO;
+    }else {
+        public = true;
+        _usersTable.hidden=YES;
+        _publicLabel.hidden=NO;
+        _searchBar.hidden = YES;
     }
-    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -157,7 +155,7 @@ NSMutableArray *users;
 {
     //[users removeAllObjects];
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.username contains [c] %@", searchText];
-
+    
     self.searchResult = [NSMutableArray arrayWithArray: [users filteredArrayUsingPredicate:resultPredicate]];
 }
 
@@ -169,7 +167,7 @@ NSMutableArray *users;
 }
 
 -(IBAction)saveCustomMessage{
-      PFObject *parseMessage = [PFObject objectWithClassName:@"CustomMessage"];
+    PFObject *parseMessage = [PFObject objectWithClassName:@"CustomMessage"];
     //starts the hUD
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     //sets hud style
@@ -179,50 +177,40 @@ NSMutableArray *users;
     //displays the HUD
     [hud show:YES];
     //variables set to equal fields
-    NSString *title = _titleTextField.text;
-    NSString *note = _noteTextField.text;
-    NSString *explanation = _explainedTextField.text;
-    NSString *category = _categoryTextfield.text;
     //manages who to send msg to
     PFUser *toUser=nil;
     if (public == NO) {
-        parseMessage[@"public"] = @NO;
-        if ([self.usersTable indexPathForSelectedRow]){
-             toUser=[users objectAtIndex:[self.usersTable indexPathForSelectedRow].row];
-        }
-        else{
-            parseMessage[@"public"] = @YES;
-            [hud hide:YES];
-            UIAlertView *error = [[UIAlertView alloc]
-                                  initWithTitle: @"Select a User"
-                                  message: @"Please select a user from the list by either searching for a username or navigating through the list manually."
-                                  delegate: nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [error show];
-            return;
-        }
-       
+        //Support from Apple DTS
+        //breakpoint was at the *index declaration
+        NSIndexPath *index = (self.searchDisplayController.active) ? [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]
+        : [self.usersTable indexPathForSelectedRow];
+        
+        assert(index != nil);
+        toUser = [self.searchResult objectAtIndex:index.row];
+        
     } else{
         uint32_t random = arc4random_uniform([users count]);
         PFUser *randomUser = [users objectAtIndex:random];
         
         toUser = randomUser;
- 
-    }
-    parseMessage[@"title"]=title;
-    parseMessage[@"note"]=note;
-    parseMessage[@"explanation"]=explanation;
-    parseMessage[@"category"]=category;
-    ParseExampleAppDelegate *delegate=[[UIApplication sharedApplication] delegate];
-    parseMessage[@"user"]=delegate.applicationUser;
-    UIImage *image = [_imageView image];
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-    [parseMessage setObject:imageFile forKey:@"picture"];
-
-    if (toUser!= nil){
-       parseMessage[@"toUser"]=toUser;
+        
+    }    if (toUser!= nil){
+        //update initiatly startes here. 1.1
+        NSString *title = _titleTextField.text;
+        NSString *note = _noteTextField.text;
+        NSString *explanation = _explainedTextField.text;
+        NSString *category = _categoryTextfield.text;
+        parseMessage[@"title"]=title;
+        parseMessage[@"note"]=note;
+        parseMessage[@"explanation"]=explanation;
+        parseMessage[@"category"]=category;
+        ParseExampleAppDelegate *delegate=[[UIApplication sharedApplication] delegate];
+        parseMessage[@"user"]=delegate.applicationUser;
+        parseMessage[@"toUser"]=toUser;
+        UIImage *image = [_imageView image];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+        [parseMessage setObject:imageFile forKey:@"picture"];
     }
     [parseMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -247,11 +235,10 @@ NSMutableArray *users;
             [error show];
         }
     }];
-    _titleTextField.text=@"";
-    _explainedTextField.text=@"";
-    _noteTextField.text=@"";
-    _categoryTextfield.text=@"";
+    
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -270,9 +257,15 @@ NSMutableArray *users;
     
     cell.text= [tempObject objectForKey:@"username"];
     
-  
+    
     return cell;
+    
+}
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchResult = [NSMutableArray arrayWithArray:users];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -280,11 +273,8 @@ NSMutableArray *users;
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_usersTable == self.searchDisplayController.active) {
-        return [self.searchResult count];
-    } else {
-        return users;
-    }
+    
+    return self.searchResult.count;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
