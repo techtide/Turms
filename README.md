@@ -1,6 +1,6 @@
-[!image]https://img.shields.io/travis/joyent/node.svg
-#Developer: 11 year old, Arman Bhalla (published under my sisters name because iTunes Connect requires 13+ age)
-##Turms Messenger Description (Formally known as Happy Med and Happy Day)
+![Image of Travis CI.com badge](https://img.shields.io/travis/joyent/node.svg)
+Developer: 11 year old, Arman Bhalla (published under my sisters name because iTunes Connect requires 13+ age)
+#Turms Messenger Description (Formally known as Happy Med and Happy Day)
 Enjoy fun and smart mobile chat! Send nonpermanent text and image based secure internet messages. You can send anything you like from an emoji to a greeting. You can also chose to send secure public or private messages. A public message will send to any user of the app and allow you to make new friends, and a private message will send to a specific person such as a friend or a family member. The only application you will need to make new friends or connect with old ones is Turms, the mobile messenger god.
 
 Features:
