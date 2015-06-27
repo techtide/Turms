@@ -89,9 +89,7 @@ NSMutableArray *users;
     [self.usersTable setDataSource:self];
     [self.usersTable reloadData];
     
-    //Sets the segmented controller default to the BOOL of yes.
-    public = YES;
-    
+    //public = false;
     
     _titleTextField.delegate = self;
     _noteTextField.delegate = self;
@@ -180,21 +178,26 @@ NSMutableArray *users;
     //manages who to send msg to
     PFUser *toUser=nil;
     if (public == NO) {
-        //Support from Apple DTS
-        //breakpoint was at the *index declaration
+        //Send based on the user selected on table view.
+        
         NSIndexPath *index = (self.searchDisplayController.active) ? [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]
         : [self.usersTable indexPathForSelectedRow];
         
         assert(index != nil);
         toUser = [self.searchResult objectAtIndex:index.row];
-        
+        [parseMessage setObject:[NSNumber numberWithBool:NO] forKey:@"public"];
     } else{
+        //Send to a random user using a uint32
+        
         uint32_t random = arc4random_uniform([users count]);
         PFUser *randomUser = [users objectAtIndex:random];
         
         toUser = randomUser;
+        [parseMessage setObject:[NSNumber numberWithBool:YES] forKey:@"public"];
         
-    }    if (toUser!= nil){
+        
+    }
+    if (toUser!= nil){
         //update initiatly startes here. 1.1
         NSString *title = _titleTextField.text;
         NSString *note = _noteTextField.text;
@@ -207,6 +210,7 @@ NSMutableArray *users;
         ParseExampleAppDelegate *delegate=[[UIApplication sharedApplication] delegate];
         parseMessage[@"user"]=delegate.applicationUser;
         parseMessage[@"toUser"]=toUser;
+       
         UIImage *image = [_imageView image];
         NSData *imageData = UIImagePNGRepresentation(image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
@@ -216,7 +220,7 @@ NSMutableArray *users;
         if (succeeded) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Sent"
-                                  message: @"Your message/medicine has been sent."
+                                  message: @"Your message has been sent."
                                   delegate: nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
