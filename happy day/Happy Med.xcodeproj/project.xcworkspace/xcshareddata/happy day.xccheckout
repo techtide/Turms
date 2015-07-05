@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D8AE24D5-BA91-47B3-B17D-F68D6BBD7780</string>
+	<key>IDESourceControlProjectName</key>
+	<string>happy day</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056</key>
+		<string>https://bitbucket.org/armanb21/medicine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>happy day.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/armanb21/medicine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ParseExample</string>
+		</dict>
+	</array>
+</dict>
+</plist>
