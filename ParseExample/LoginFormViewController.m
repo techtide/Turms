@@ -51,8 +51,11 @@ greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow: FOUR_MONTHS_AGO]];
         [[PFUser currentUser] deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             UIAlertView *inActiveAlert = [[UIAlertView alloc] initWithTitle:@"You've been inactive!" message:@"Hi! Since you haven't used the app in a rather long time (three to four months) our system deleted your account automatically. You can create another account by going to the Register form. If you believe this is an error you can contact us at turms@yqpc.net." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             [inActiveAlert show];
-            
         }];
+
+        
+        
+        
     }else{
         if (!error) {
             NSLog(@"Login user!");

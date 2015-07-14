@@ -165,6 +165,8 @@ NSMutableArray *users;
 }
 
 -(IBAction)saveCustomMessage{
+  
+
     PFObject *parseMessage = [PFObject objectWithClassName:@"CustomMessage"];
     //starts the hUD
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -176,16 +178,34 @@ NSMutableArray *users;
     [hud show:YES];
     //variables set to equal fields
     //manages who to send msg to
+    
     PFUser *toUser=nil;
+
+    bool goOn = NO;
     if (public == NO) {
         //Send based on the user selected on table view.
-        
         NSIndexPath *index = (self.searchDisplayController.active) ? [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]
         : [self.usersTable indexPathForSelectedRow];
         
-        assert(index != nil);
-        toUser = [self.searchResult objectAtIndex:index.row];
-        [parseMessage setObject:[NSNumber numberWithBool:NO] forKey:@"public"];
+        if(index == nil) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Select a User"
+                                  message: @"Select a user to send the message."
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+            toUser = nil;
+            [hud hide: YES];
+            goOn = NO;
+        }else {
+            goOn = YES;
+            
+            //assert(index != nil);
+            toUser = [self.searchResult objectAtIndex:index.row];
+            [parseMessage setObject:[NSNumber numberWithBool:NO] forKey:@"public"];
+        }
+     
     } else{
         //Send to a random user using a uint32
         
@@ -197,7 +217,7 @@ NSMutableArray *users;
         
         
     }
-    if (toUser!= nil){
+    if (toUser!= nil && goOn){
         //update initiatly startes here. 1.1
         NSString *title = _titleTextField.text;
         NSString *note = _noteTextField.text;
@@ -215,7 +235,7 @@ NSMutableArray *users;
         NSData *imageData = UIImagePNGRepresentation(image);
         PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
         [parseMessage setObject:imageFile forKey:@"picture"];
-    }
+    
     [parseMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             UIAlertView *alert = [[UIAlertView alloc]
@@ -239,7 +259,7 @@ NSMutableArray *users;
             [error show];
         }
     }];
-    
+    }
 }
 
 

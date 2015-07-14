@@ -1,0 +1,2 @@
+/Users/armanbhalla/Library/Developer/Xcode/DerivedData/Happy_Med-hjeqjgkaizkpkpfoackpoxjhdqnn/Build/Products/Debug-iphonesimulator/Happy Day.app
+iPhone Developer
