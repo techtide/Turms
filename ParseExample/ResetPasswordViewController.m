@@ -12,8 +12,10 @@
 
 @interface ResetPasswordViewController ()
 
+
 @property (weak, nonatomic) IBOutlet UITextField *resetPasswordField;
 @property (weak, nonatomic) IBOutlet UIButton *updatePasswordButton;
+
 
 @end
 
@@ -23,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _resetPasswordField.delegate = self;
-}
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

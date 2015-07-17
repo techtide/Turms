@@ -8,7 +8,7 @@
 
 #import "MessageDetailViewController.h"
 #import "ParseExampleAppDelegate.h"
-
+#import "ChatViewController.h"
 @interface MessageDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -71,10 +71,10 @@
 }
 - (IBAction)reply:(id)sender {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reply"
-                                                    message:@"To reply to the user who sent this message, type in what you want to say to them, and then tap on the 'Reply,' button. Otherwise, select the 'Cancel,' button."
+                                                    message:@"To reply to the user who sent this message, type in what you want to say to them, and then tap on the 'Reply,' button. Otherwise, select the 'Cancel,' button. You can also start a real time, stacked conversation with them by clicking the 'Real Time Stack Chat.'"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Reply", NULL];
+                                          otherButtonTitles:@"Reply", @"Real Time Stack Chat", NULL];
     [alert show];
     
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -117,6 +117,12 @@
         }];
         
         
+    }
+    if(buttonIndex == 2) {
+        ChatViewController *viewController=[[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        
+        [self presentViewController:viewController animated:YES completion:nil];
+ 
     }
     
 }
