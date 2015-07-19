@@ -9,7 +9,7 @@
 #import "CustomMessagesTableViewController.h"
 #import "ParseExampleAppDelegate.h"
 #import "MessageDetailViewController.h"
-#import "ChatViewController.h"
+
 @interface CustomMessagesTableViewController ()
 
 
@@ -120,11 +120,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"messageDetail"])  {
         MessageDetailViewController *controller = [segue.destinationViewController topViewController];
-        ChatViewController *chatController = [[ChatViewController alloc]init];
+ 
         NSInteger *messageIndex = [self.colorsTable indexPathForSelectedRow].row;
         PFObject *tempObject = [colorsArray objectAtIndex: messageIndex];
         controller.parseMessage = tempObject;
-        chatController.parseMessage = tempObject;
+
     }
     
     
