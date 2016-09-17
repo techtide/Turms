@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3A539631DBBAE123FFFCF06A233114EEE76D71EF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3A539631DBBAE123FFFCF06A233114EEE76D71EF" : 0,
+    "A61F0E93D9BFA6E61907281727D46B516DE44A24" : 0,
+    "7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "55BA9CFF-EC39-4743-8885-14B7D736D5DE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3A539631DBBAE123FFFCF06A233114EEE76D71EF" : "Turms",
+    "A61F0E93D9BFA6E61907281727D46B516DE44A24" : "happy-med",
+    "7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056" : "ParseExample"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Happy Med",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Happy Med.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/armanb21\/Turms.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A539631DBBAE123FFFCF06A233114EEE76D71EF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/armanb21\/medicine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7E4FDA3EFA37CDC0C6297DA24F5D8453A6C1A056"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/armanb21\/happy-med.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A61F0E93D9BFA6E61907281727D46B516DE44A24"
+    }
+  ]
+}

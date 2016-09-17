@@ -84,7 +84,9 @@
             installation[@"user"] = [PFUser currentUser];
             [installation saveInBackground];
             PFUser *user = [PFUser currentUser];
-            user.ACL = [PFACL ACLWithUser:user];
+            PFACL *defaultACL = [PFACL ACL];
+            [defaultACL setPublicReadAccess:YES];
+            [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registered!" message:@"Your account has been created. Please sign into your account from the Login button below." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }

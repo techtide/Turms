@@ -11,8 +11,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[UITabBar appearance] setTintColor:[UIColor orangeColor]];
-    [Parse setApplicationId:@"lugLlygfU8Q3q8JOSWJQVM9xTEXP2NDQ96sH6cxm"
-                  clientKey:@"PgOv7jOB8QzAIoabNJt11cpRXJlgMKvAhWr502fZ"];
+    [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        configuration.applicationId = @"1zM39p0PFji76SZ3KGUPKHxuKXW8Whso9SIxdP4F";
+        configuration.clientKey = @"6WTfH5mLqHRhYbSRhXPRfxZ1oz3aTFstURGHj2Ns";
+        configuration.server = @"https://parseapi.back4app.com";
+        configuration.localDatastoreEnabled = YES; // If you need to enable local data store
+    }]];
+
     PFUser *currentUser = [PFUser currentUser];
 
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |

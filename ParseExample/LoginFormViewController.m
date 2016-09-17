@@ -39,25 +39,9 @@
 - (IBAction)loginButton:(id)sender {
     NSError *error;
     PFUser *user=[PFUser logInWithUsername:_loginUsernameField.text password:_loginPasswordField.text error:&error ];
-    PFUser *userOne = [PFUser currentUser];
     [user save];
-    NSTimeInterval FOUR_MONTHS_AGO = 2921.94 * 60 * 60; //4 months in hours
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    [query whereKey:@"updatedAt"
-greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow: FOUR_MONTHS_AGO]];
-    NSString *inActiveUser = [query getObjectWithId:userOne];
-    NSString *currentUser = userOne;
-    if (inActiveUser==currentUser) {
-        [[PFUser currentUser] deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            UIAlertView *inActiveAlert = [[UIAlertView alloc] initWithTitle:@"You've been inactive!" message:@"Hi! Since you haven't used the app in a rather long time (three to four months) our system deleted your account automatically. You can create another account by going to the Register form. If you believe this is an error you can contact us at turms@yqpc.net." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-            [inActiveAlert show];
-        }];
-
-        
-        
-        
-    }else{
-        if (!error) {
+    if (!error) {
             NSLog(@"Login user!");
             _loginPasswordField.text = nil;
             _loginUsernameField.text = nil;
@@ -73,7 +57,6 @@ greaterThanOrEqualTo:[NSDate dateWithTimeIntervalSinceNow: FOUR_MONTHS_AGO]];
 
         //Essential Profile Variables
     };
-}
 - (IBAction)updateButtonPressed:(id)sender {
     NSString *email = _resetPasswordField.text;
     //Sends an email to the user with a reset link using the Parse API.
