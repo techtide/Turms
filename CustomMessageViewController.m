@@ -190,7 +190,7 @@ NSMutableArray *users;
         if(index == nil) {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Select a User"
-                                  message: @"Select a user to send the message."
+                                  message: @"Please remember to select a user from the directory, or send it as a public message!"
                                   delegate: nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
