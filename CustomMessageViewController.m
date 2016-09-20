@@ -247,6 +247,7 @@ NSMutableArray *users;
             [alert show];
             //hud displays
             [hud hide:YES];
+            
         } else {
             // There was a problem, check error.description
             [hud hide:YES];
